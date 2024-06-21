@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Tuqi Blog</title><link>https://tuqigo.github.io</link><description>Try Everything</description><copyright>Tuqi Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://tuqigo.github.io</link></image><lastBuildDate>Fri, 21 Jun 2024 05:55:44 +0000</lastBuildDate><managingEditor>Tuqi Blog</managingEditor><ttl>60</ttl><webMaster>Tuqi Blog</webMaster><item><title>短链系统的实现与演进</title><link>https://tuqigo.github.io/post/duan-lian-xi-tong-de-shi-xian-yu-yan-jin.html</link><description># 1、为什么要用短链&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Tuqi Blog</title><link>https://tuqigo.github.io</link><description>Try Everything</description><copyright>Tuqi Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://tuqigo.github.io</link></image><lastBuildDate>Fri, 21 Jun 2024 13:03:15 +0000</lastBuildDate><managingEditor>Tuqi Blog</managingEditor><ttl>60</ttl><webMaster>Tuqi Blog</webMaster><item><title>寻找优选域名</title><link>https://tuqigo.github.io/post/xun-zhao-you-xuan-yu-ming.html</link><description>1. 关键字搜索Websites using Cloudflare CDN Hongkong &#13;
+   1. [Websites using Cloudflare in Hong Kong (builtwith.com)](https://trends.builtwith.com/cdn/Cloudflare/Hong-Kong)&#13;
+2. [多个地点Ping服务器,网站测速 - 站长工具 (chinaz.com)](https://ping.chinaz.com/)&#13;
+   1. 站长工具ping看当地情况判断域名是不是优质的&#13;
+   2. &#13;
+&#13;
+&#13;
+&#13;
+fofa: [网络空间测绘，网络空间安全搜索引擎，网络空间搜索引擎，安全态势感知 - FOFA网络空间测绘系统](https://fofa.info/)。</description><guid isPermaLink="true">https://tuqigo.github.io/post/xun-zhao-you-xuan-yu-ming.html</guid><pubDate>Fri, 21 Jun 2024 13:02:51 +0000</pubDate></item><item><title>短链系统的实现与演进</title><link>https://tuqigo.github.io/post/duan-lian-xi-tong-de-shi-xian-yu-yan-jin.html</link><description># 1、为什么要用短链&#13;
 &#13;
 - 短链：[kujl.cc/lRDx](https://kujl.cc/lRDx)&#13;
 - 长链：https://www.kujiale.com/synergy/api/invite_inner?designid=3FO3PUK9MV3L&amp;userid=3FO4M2CXDFK1&#13;
