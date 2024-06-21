@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Tuqi Blog</title><link>https://tuqigo.github.io</link><description>Try Everything</description><copyright>Tuqi Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://tuqigo.github.io</link></image><lastBuildDate>Fri, 21 Jun 2024 13:57:54 +0000</lastBuildDate><managingEditor>Tuqi Blog</managingEditor><ttl>60</ttl><webMaster>Tuqi Blog</webMaster><item><title>寻找优选域名</title><link>https://tuqigo.github.io/post/xun-zhao-you-xuan-yu-ming.html</link><description>1. 关键字搜索Websites using Cloudflare CDN Hongkong &#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Tuqi Blog</title><link>https://tuqigo.github.io</link><description>Try Everything</description><copyright>Tuqi Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://tuqigo.github.io</link></image><lastBuildDate>Fri, 21 Jun 2024 13:58:55 +0000</lastBuildDate><managingEditor>Tuqi Blog</managingEditor><ttl>60</ttl><webMaster>Tuqi Blog</webMaster><item><title>寻找优选域名</title><link>https://tuqigo.github.io/post/xun-zhao-you-xuan-yu-ming.html</link><description>###  1.优选方法&#13;
+1. 关键字搜索Websites using Cloudflare CDN Hongkong &#13;
    1. [Websites using Cloudflare in Hong Kong (builtwith.com)](https://trends.builtwith.com/cdn/Cloudflare/Hong-Kong)&#13;
 2. [多个地点Ping服务器,网站测速 - 站长工具 (chinaz.com)](https://ping.chinaz.com/)&#13;
    1. 站长工具ping看当地情况判断域名是不是优质的&#13;
@@ -9,7 +10,7 @@
 &#13;
 fofa: [网络空间测绘，网络空间安全搜索引擎，网络空间搜索引擎，安全态势感知 - FOFA网络空间测绘系统](https://fofa.info/)&#13;
 &#13;
-###  优选域名&#13;
+###  2.优选域名&#13;
 &#13;
 **www.visa.com**&#13;
 **time.cloudflare.com**&#13;
@@ -63,7 +64,7 @@ fofa: [网络空间测绘，网络空间安全搜索引擎，网络空间搜索�
 &#13;
 &#13;
 &#13;
-### 八个反代cf 域名&#13;
+### 3.八个反代cf 域名&#13;
 &#13;
 **edgetunnel.anycast.eu.org**&#13;
 **cdn-all.xn--b6gac.eu.org**&#13;
@@ -76,7 +77,7 @@ fofa: [网络空间测绘，网络空间安全搜索引擎，网络空间搜索�
 &#13;
 &#13;
 &#13;
-### 解锁ChatGPT和奈飞的反代ip组（目前稳定使用半年）&#13;
+### 4.解锁ChatGPT和奈飞的反代ip组（目前稳定使用半年）&#13;
 &#13;
 **146.70.175.98**&#13;
 **146.70.175.99**&#13;
@@ -87,7 +88,7 @@ fofa: [网络空间测绘，网络空间安全搜索引擎，网络空间搜索�
 **146.70.175.104**&#13;
 **146.70.175.116**&#13;
 &#13;
-### 两种运行模式&#13;
+### 5.两种运行模式&#13;
 &#13;
 **vless+ws有**：7个http端口可任意选择：80、8080、8880、2052、2082、2086、2095&#13;
 **vless+ws+tls有**：6个 https 端口可任意选择：443、8443、2053、2083、2087、2096。</description><guid isPermaLink="true">https://tuqigo.github.io/post/xun-zhao-you-xuan-yu-ming.html</guid><pubDate>Fri, 21 Jun 2024 13:02:51 +0000</pubDate></item><item><title>短链系统的实现与演进</title><link>https://tuqigo.github.io/post/duan-lian-xi-tong-de-shi-xian-yu-yan-jin.html</link><description># 1、为什么要用短链&#13;
