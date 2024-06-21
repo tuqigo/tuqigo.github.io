@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# 1、为什么要用短链
+
+- 短链：[kujl.cc/lRDx](https://kujl.cc/lRDx)
+- 长链：https://www.kujiale.com/synergy/api/invite_inner?designid=3FO3PUK9MV3L&userid=3FO4M2CXDFK1
+
+1. 节省空间： 短链接相比原始链接更短，适用于字符数量有限的场合，例如企信、短信、二维码等。">
+<meta property="og:title" content="短链系统的实现与演进">
+<meta property="og:description" content="# 1、为什么要用短链
+
+- 短链：[kujl.cc/lRDx](https://kujl.cc/lRDx)
+- 长链：https://www.kujiale.com/synergy/api/invite_inner?designid=3FO3PUK9MV3L&userid=3FO4M2CXDFK1
+
+1. 节省空间： 短链接相比原始链接更短，适用于字符数量有限的场合，例如企信、短信、二维码等。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://tuqigo.github.io/post/duan-lian-xi-tong-de-shi-xian-yu-yan-jin.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>短链系统的实现与演进</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">短链系统的实现与演进</h1>
+<div class="title-right">
+    <a href="https://tuqigo.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/tuqigo/tuqigo.github.io/issues/5" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>1、为什么要用短链</h1>
+<ul>
+<li>短链：<a href="https://kujl.cc/lRDx" rel="nofollow">kujl.cc/lRDx</a></li>
+<li>长链：<a href="https://www.kujiale.com/synergy/api/invite_inner?designid=3FO3PUK9MV3L&amp;userid=3FO4M2CXDFK1" rel="nofollow">https://www.kujiale.com/synergy/api/invite_inner?designid=3FO3PUK9MV3L&amp;userid=3FO4M2CXDFK1</a></li>
+</ul>
+<ol>
+<li>节省空间： 短链接相比原始链接更短，适用于字符数量有限的场合，例如企信、短信、二维码等。</li>
+<li>美化链接： 短链可以使链接看起来更简洁、美观，方便与他人分享。</li>
+<li>追踪点击量： 通过短链服务进行中转，可以跟踪链接的点击量和其他统计数据，帮助分析链接的流量情况。</li>
+<li>隐藏原始链接：在某些情况下，使用短链接可以隐藏原始链接，增加一定程度的安全性。</li>
+<li>可以实现固定连接：固定连接可以用于永久保存（比如二维码）。</li>
+</ol>
+<h1>2、短链的工作流程</h1>
+<p>短链的工作流程主要分为两部分：</p>
+<ol>
+<li>通过短链中的路径参数key（如 <a href="http://kujl.cc/lRDx" rel="nofollow">kujl.cc/lRDx</a> 中的 “lRDx”），查找对应的原始链接</li>
+<li>发起一次重定向，重定向到原始链接</li>
+</ol>
+<p>具体如下图：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/7b580f82-7987-4b1d-a8be-95b5d21cd992"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/7b580f82-7987-4b1d-a8be-95b5d21cd992" alt="image" style="max-width: 100%;"></a></p>
+<h1>3、长链变短链的算法实现</h1>
+<p>通过上面的介绍，我们知道了短链本质是用一个字符串key（“lRDx”）去唯一映射一个长链，那么如何将长链转换成一个字符串key呢？</p>
+<h2>3.1 通过哈希算法映射</h2>
+<p>很容易想到的一个方案是hash算法。通过hash算法，将长链转换为一个固定长度（或非固定）的字符串key，并将其映射关系保存到db。用户访问短链时通过对应的key从db中找到其映射的长链接，并重定向到长链接即可实现转发。<br>
+常见的HASH算法以及其转换效果见下表：</p>
+<p>（长链接：<a href="https://www.kujiale.cn/activities/unihopperdesignercup%EF%BC%89" rel="nofollow">https://www.kujiale.cn/activities/unihopperdesignercup）</a></p>
+<table role="table">
+<thead>
+<tr>
+<th>算法</th>
+<th>哈希结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MD2</td>
+<td>6f5bfb9b0275436944acc73124d04f13</td>
+</tr>
+<tr>
+<td>MD5</td>
+<td>7c9529777cb1d4e3fbf5b8b873167706</td>
+</tr>
+<tr>
+<td>SHA-1</td>
+<td>6884e316d0af702e6ea7d7f3f937647071c13cd8</td>
+</tr>
+<tr>
+<td>SHA-256</td>
+<td>54fd60579bd63b273d1423f4d8a14cd8d23ba222907c999c1bd126f708aa8c3b</td>
+</tr>
+<tr>
+<td>SHA-512</td>
+<td>e9fe0601c5743817548afe1c31d5d85ace98514fc4314ef89a546f726caa696a3b4f7e9994313acf9ebf8695fed43674acb1158f2628daf03c14d8c7973c24e1</td>
+</tr>
+<tr>
+<td>MurmurHash3</td>
+<td>2583b14b</td>
+</tr>
+</tbody>
+</table>
+<p>（MurmurHash算法：是一种高速度、低碰撞率的非加密哈希算法，详细见 <a href="https://zh.wikipedia.org/wiki/Murmur%E5%93%88%E5%B8%8C" rel="nofollow">Murmur哈希 - 维基百科</a>）</p>
+<p><strong>从上面这些转换结果来看，可以发现几个问题：</strong></p>
+<ol>
+<li>转换后的字符长度并不短，违背了短链的节省空间目标</li>
+<li>哈希算法存在碰撞概率，相关内容可参考 <a href="https://www.ruanyifeng.com/blog/2018/09/hash-collision-and-birthday-attack.html" rel="nofollow">哈希碰撞与生日攻击</a></li>
+</ol>
+<p>因此，哈希算法并不适合用于短链服务的映射关系中，但可用于辅助查找长链是否已存在。</p>
+<h2>3.2 通过DB自增主键ID映射</h2>
+<p>既然哈希算法无法满足诉求，另一个很容易想到的方案是利用db自增主键来做长短链映射的key，例如 1 -&gt; <a href="https://www.kujiale.cn/activities/unihopperdesignercup%EF%BC%8C%E5%BD%93%E6%88%91%E4%BB%AC%E8%AE%BF%E9%97%AE" rel="nofollow">https://www.kujiale.cn/activities/unihopperdesignercup，当我们访问</a> kujl.cc/1 时就可以通过路径参数1来找到对应的长链，并进行重定向。</p>
+<table role="table">
+<thead>
+<tr>
+<th>id</th>
+<th>长链</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://www.kujiale.cn/activities/unihopperdesignercup" rel="nofollow">https://www.kujiale.cn/activities/unihopperdesignercup</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://www.baidu.com/" rel="nofollow">https://www.baidu.com</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://graphic-design-cos.kujiale.com/meijian/qhgeom/prod/renderImage/5854258232459218443/2024/06/19/171878312907557671.png?imageMogr2/format/webp" rel="nofollow">https://graphic-design-cos.kujiale.com/meijian/qhgeom/prod/renderImage/5854258232459218443/2024/06/19/171878312907557671.png?imageMogr2/format/webp</a></td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>100000000000</td>
+<td><a href="https://www.kujiale.com/synergy/api/invite_inner?designid=3FO3PRMQIVQW&amp;userid=3FO4LKD8745I" rel="nofollow">https://www.kujiale.com/synergy/api/invite_inner?designid=3FO3PRMQIVQW&amp;userid=3FO4LKD8745I</a></td>
+</tr>
+</tbody>
+</table>
+<h3>能不能更短？</h3>
+<p>通过上面的表格可以看出，当自增ID膨胀到一定数量级时（比如10亿），我们生成的短链则变成 <a href="http://kujl.cc/1000000000" rel="nofollow">kujl.cc/1000000000</a>，看起来还不够短，也不够优雅。这时我们可以通过 进制转换 来进一步压缩短链长度。不同进制转化后的效果如下：</p>
+<table role="table">
+<thead>
+<tr>
+<th>进制</th>
+<th>转换后的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>十进制</td>
+<td>1000000000 （10位）</td>
+</tr>
+<tr>
+<td>十六进制</td>
+<td>3b9aca00（8位）</td>
+</tr>
+<tr>
+<td>三十二进制</td>
+<td>tplig0（6位）</td>
+</tr>
+<tr>
+<td>自定义进制（六十六进制）</td>
+<td>QKkra（5位）</td>
+</tr>
+</tbody>
+</table>
+<p>自定义进制算法：理论上，url支持的字符（去除保留字符）都可以参与到自定义进制算法中。可用字符如下：</p>
+<ol>
+<li>字母（大小写）：a-z, A-Z</li>
+<li>数字：0-9</li>
+<li>特殊字符：一些特殊字符也是允许的，如：</li>
+</ol>
+<ul>
+<li>
+<ul>
+<li>连字符 (-)</li>
+<li>下划线 (_)</li>
+<li>句号 (.)</li>
+<li>波浪线 (~)</li>
+</ul>
+</li>
+</ul>
+<p>可用字符加起来共有66个字符，因此可以实现六十六进制，使用GPT可以帮助我们实现一个六十六进制 -&gt; 十进制的转换算法，10亿转换为六十六进制后结果为：QKkra。下面为GTP生成的自定义进制转换算法java实现：</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-smi">String</span> <span class="pl-c1">BASE_66_CHARS</span> = <span class="pl-s">"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-._~"</span>;
+ 
+<span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">String</span> <span class="pl-s1">convert</span>(<span class="pl-smi">long</span> <span class="pl-s1">number</span>) {
+    <span class="pl-k">if</span> (<span class="pl-s1">number</span> == <span class="pl-c1">0</span>) {
+         <span class="pl-k">return</span> <span class="pl-smi">String</span>.<span class="pl-en">valueOf</span>(<span class="pl-smi">BASE_66_CHARS</span>.<span class="pl-en">charAt</span>(<span class="pl-c1">0</span>));
+    }
+ 
+    <span class="pl-smi">List</span>&lt;<span class="pl-smi">Character</span>&gt; <span class="pl-s1">base66Chars</span> = <span class="pl-k">new</span> <span class="pl-smi">ArrayList</span>&lt;&gt;();
+    <span class="pl-k">while</span> (<span class="pl-s1">number</span> &gt; <span class="pl-c1">0</span>) {
+        <span class="pl-smi">int</span> <span class="pl-s1">remainder</span> = (<span class="pl-smi">int</span>) (<span class="pl-s1">number</span> % <span class="pl-c1">66</span>);
+        <span class="pl-s1">base66Chars</span>.<span class="pl-en">add</span>(<span class="pl-smi">BASE_66_CHARS</span>.<span class="pl-en">charAt</span>(<span class="pl-s1">remainder</span>));
+        <span class="pl-s1">number</span> /= <span class="pl-c1">66</span>;
+    }
+ 
+    <span class="pl-smi">StringBuilder</span> <span class="pl-s1">result</span> = <span class="pl-k">new</span> <span class="pl-smi">StringBuilder</span>();
+    <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-s1">base66Chars</span>.<span class="pl-en">size</span>() - <span class="pl-c1">1</span>; <span class="pl-s1">i</span> &gt;= <span class="pl-c1">0</span>; <span class="pl-s1">i</span>--) {
+        <span class="pl-s1">result</span>.<span class="pl-en">append</span>(<span class="pl-s1">base66Chars</span>.<span class="pl-en">get</span>(<span class="pl-s1">i</span>));
+    }
+ 
+    <span class="pl-k">return</span> <span class="pl-s1">result</span>.<span class="pl-en">toString</span>();
+}
+ 
+<span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">long</span> <span class="pl-s1">convert</span>(<span class="pl-smi">String</span> <span class="pl-s1">base66Value</span>) {
+    <span class="pl-smi">Map</span>&lt;<span class="pl-smi">Character</span>, <span class="pl-smi">Integer</span>&gt; <span class="pl-s1">base66Map</span> = <span class="pl-k">new</span> <span class="pl-smi">HashMap</span>&lt;&gt;();
+    <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-smi">BASE_66_CHARS</span>.<span class="pl-en">length</span>(); <span class="pl-s1">i</span>++) {
+        <span class="pl-s1">base66Map</span>.<span class="pl-en">put</span>(<span class="pl-smi">BASE_66_CHARS</span>.<span class="pl-en">charAt</span>(<span class="pl-s1">i</span>), <span class="pl-s1">i</span>);
+    }
+ 
+    <span class="pl-smi">long</span> <span class="pl-s1">result</span> = <span class="pl-c1">0</span>;
+    <span class="pl-smi">int</span> <span class="pl-s1">power</span> = <span class="pl-c1">0</span>;
+    <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-s1">base66Value</span>.<span class="pl-en">length</span>() - <span class="pl-c1">1</span>; <span class="pl-s1">i</span> &gt;= <span class="pl-c1">0</span>; <span class="pl-s1">i</span>--) {
+        <span class="pl-smi">char</span> <span class="pl-s1">c</span> = <span class="pl-s1">base66Value</span>.<span class="pl-en">charAt</span>(<span class="pl-s1">i</span>);
+        <span class="pl-s1">result</span> += <span class="pl-s1">base66Map</span>.<span class="pl-en">get</span>(<span class="pl-s1">c</span>) * <span class="pl-smi">Math</span>.<span class="pl-en">pow</span>(<span class="pl-c1">62</span>, <span class="pl-s1">power</span>);
+        <span class="pl-s1">power</span>++;
+    }
+ 
+    <span class="pl-k">return</span> <span class="pl-s1">result</span>;
+}</pre></div>
+<p>（运营系统短链能力最终实现的是62进制，剔除了-_.~四个字符，主要用于美观）</p>
+<h1>4、短链服务的技术架构</h1>
+<h2>4.1 V1.0版本</h2>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/b987aa37-44a2-457f-95fd-9a553ca02dd9"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/b987aa37-44a2-457f-95fd-9a553ca02dd9" alt="image" style="max-width: 100%;"></a></p>
+<p>最简单的技术架构如图所示，一个Java服务 + 一个MySQL以及申请一个短链域名即可实现，满足基本的业务诉求没有任何问题，也可以利用弹性扩缩容满足临时的流量增长（目前运营系统集成的短链能力处在这一阶段）。</p>
+<p><em><strong>但这是否是最优解？</strong></em></p>
+<p>显然不是！短链服务作为一个公司的基建能力，首要的目标是高性能、高可用、低成本，我们将围绕上述三个目标进行架构上的改造与探索。</p>
+<h2>4.2 V2.0版本（未来篇）</h2>
+<p>改造后的架构如下：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/2d40db9a-f798-436e-9546-902816c6995a"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/2d40db9a-f798-436e-9546-902816c6995a" alt="image" style="max-width: 100%;"></a></p>
+<p>从上图可以发现，我们将短链服务的不同能力做了模块分割。使用新的技术栈OpenResty来承载短链转发能力，旧的Java服务只用来承载短链注册和访问数据采集能力。同时引入了redis缓存+mq来作为不同模块之间的解耦媒介。新的架构可能会给大家带来一些疑惑，下面我们来一起讨论一下几个问题：</p>
+<h3>为什么要做模块分离？</h3>
+<ul>
+<li>风险隔离，短链转发能力作为短链服务最核心的能力，其稳定性要求远高于偏后台能力的短链注册、短链访问数据查询等（类似于权限权益），通过分离设计可以避免后台低性能操作对核心能力带来影响</li>
+<li>性能优化，可以单独针对核心能力做深度性能优化</li>
+<li>技术选型优化，单一职责的核心模块更容易技术选型调整</li>
+</ul>
+<h3>为什么用OpenResty？</h3>
+<p>OpenResty 就是在 Nginx 的基础上，进行二次开发，嵌入了 Lua 语言，提供接口可以让用户编写 Lua 代码处理用户请求，使得 OpenResty 不仅具有 Nginx 架构的高性能，又兼具了动态性、可编程性，可以通过 Lua 代码使用OpenResty 封装好的接口（cosocket）进行同步编程，构建出可以处理10k甚至100k以上并发请求的 web 应用。OpenResty 官网 <a href="https://openresty.org/cn/" rel="nofollow">OpenResty® - 开源官方站</a></p>
+<p>选用 OpenResty 的核心原因就是快！下面看一组官方性能对比（原文链接：<a href="https://openresty.org/cn/benchmark.html" rel="nofollow">OpenResty - Benchmark</a>）：</p>
+<p><em>So on my laptop, for a single nginx worker, we've got 20k+ r/s. For comparison, HelloWorld servers using nginx + php-fpm 5.2.8 gives 4k r/s, Erlang R14B2 raw gen_tcp server gives 8k r/s, and <a href="http://nodejs.org/" rel="nofollow">node.js</a> v0.4.8 yields 5.7k r/s.</em></p>
+<p><strong>从官方的性能测试结论中可以看出，同一个 HelloWorld 的请求，OpenResty（1 nginx worker）的性能是 nginx+php 的5倍，erlang 的2.5倍，nodejs 的3.5倍。</strong></p>
+<h3>OpenResty为什么快？</h3>
+<p>OpenResty 本质是 Nginx + LuaJIT</p>
+<ol>
+<li>利用了 Nginx 的异步事件模型，可以极大提高并发处理能力（异步非阻塞的I/O模型 <a href="https://zhuanlan.zhihu.com/p/115912936" rel="nofollow">100%弄明白5种IO模型</a>）</li>
+<li>集成了 LuaJIT 作为 Lua 语言及时编译器，很大程度的提高了 Lua 脚本的执行效率（LuaJIT：<a href="https://luajit.org/luajit.html" rel="nofollow">LuaJIT</a>）</li>
+<li>Lua 支持协程，拥有比线程更低的维护成本和切换开销</li>
+<li>cosocket（coroutine + socket）对比传统 socket 编程，在资源占用、执行效率、并发能力上都更为出色</li>
+</ol></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://tuqigo.github.io"> Tuqi Blog </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","tuqigo/tuqigo.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>

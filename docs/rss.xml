@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Tuqi Blog</title><link>https://tuqigo.github.io</link><description>Try Everything</description><copyright>Tuqi Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://tuqigo.github.io</link></image><lastBuildDate>Fri, 21 Jun 2024 02:36:51 +0000</lastBuildDate><managingEditor>Tuqi Blog</managingEditor><ttl>60</ttl><webMaster>Tuqi Blog</webMaster><item><title>《代码整洁之道》读后感</title><link>https://tuqigo.github.io/post/%E3%80%8A-dai-ma-zheng-ji-zhi-dao-%E3%80%8B-du-hou-gan.html</link><description># 有意义的命名&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Tuqi Blog</title><link>https://tuqigo.github.io</link><description>Try Everything</description><copyright>Tuqi Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://tuqigo.github.io</link></image><lastBuildDate>Fri, 21 Jun 2024 05:55:44 +0000</lastBuildDate><managingEditor>Tuqi Blog</managingEditor><ttl>60</ttl><webMaster>Tuqi Blog</webMaster><item><title>短链系统的实现与演进</title><link>https://tuqigo.github.io/post/duan-lian-xi-tong-de-shi-xian-yu-yan-jin.html</link><description># 1、为什么要用短链&#13;
+&#13;
+- 短链：[kujl.cc/lRDx](https://kujl.cc/lRDx)&#13;
+- 长链：https://www.kujiale.com/synergy/api/invite_inner?designid=3FO3PUK9MV3L&amp;userid=3FO4M2CXDFK1&#13;
+&#13;
+1. 节省空间： 短链接相比原始链接更短，适用于字符数量有限的场合，例如企信、短信、二维码等。</description><guid isPermaLink="true">https://tuqigo.github.io/post/duan-lian-xi-tong-de-shi-xian-yu-yan-jin.html</guid><pubDate>Fri, 21 Jun 2024 05:55:17 +0000</pubDate></item><item><title>《代码整洁之道》读后感</title><link>https://tuqigo.github.io/post/%E3%80%8A-dai-ma-zheng-ji-zhi-dao-%E3%80%8B-du-hou-gan.html</link><description># 有意义的命名&#13;
 &#13;
 每次对一个东西命名后,应该检查是否符合以下标准:&#13;
 &#13;
