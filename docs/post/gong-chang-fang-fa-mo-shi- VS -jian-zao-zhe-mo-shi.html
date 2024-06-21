@@ -9,19 +9,31 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="<html>
-<body>
-<!--StartFragment--><h2>设计思想对比</h2>
-设计模式 | 工厂方法模式 | 建造者模式
--- | -- | --
-定义 | 工厂方法模式通过定义一个用于创建对象的接口，并由子类决定实例化哪个类，将对象的实例化延迟到子类中。">
+<meta name="description" content="![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/e8d6d420-58e6-4308-86af-e87a98e1d9d7)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/9415678c-f535-47b9-8e21-becfd831b316)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/b7f89c9f-e753-4cce-bfcc-cfb9b4581775)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/fb266280-9879-42f0-9b89-75709e7a220a)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/94f61e59-3ab4-4b0b-86c8-fd203770148b)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/48f20736-4e24-4e1a-aec3-271d6c3ce7b6)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/a0da50c0-d1c5-4d5e-a349-4bd8a0fbb457)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/56034147-06f1-4451-a7e6-83e6f4a59956)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/0f748bb2-5f7c-434a-ad1e-89069e5430c9)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/25525b0f-439c-421f-bd71-98fb8e3347f4)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/abb3975a-9563-444a-9428-6a56aacb4bf8)
+。">
 <meta property="og:title" content="工厂方法模式 VS 建造者模式">
-<meta property="og:description" content="<html>
-<body>
-<!--StartFragment--><h2>设计思想对比</h2>
-设计模式 | 工厂方法模式 | 建造者模式
--- | -- | --
-定义 | 工厂方法模式通过定义一个用于创建对象的接口，并由子类决定实例化哪个类，将对象的实例化延迟到子类中。">
+<meta property="og:description" content="![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/e8d6d420-58e6-4308-86af-e87a98e1d9d7)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/9415678c-f535-47b9-8e21-becfd831b316)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/b7f89c9f-e753-4cce-bfcc-cfb9b4581775)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/fb266280-9879-42f0-9b89-75709e7a220a)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/94f61e59-3ab4-4b0b-86c8-fd203770148b)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/48f20736-4e24-4e1a-aec3-271d6c3ce7b6)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/a0da50c0-d1c5-4d5e-a349-4bd8a0fbb457)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/56034147-06f1-4451-a7e6-83e6f4a59956)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/0f748bb2-5f7c-434a-ad1e-89069e5430c9)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/25525b0f-439c-421f-bd71-98fb8e3347f4)
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/abb3975a-9563-444a-9428-6a56aacb4bf8)
+。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://tuqigo.github.io/post/gong-chang-fang-fa-mo-shi-%20VS%20-jian-zao-zhe-mo-shi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -80,21 +92,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody">
-
-<h2>设计思想对比</h2>
-设计模式 | 工厂方法模式 | 建造者模式
--- | -- | --
-定义 | 工厂方法模式通过定义一个用于创建对象的接口，并由子类决定实例化哪个类，将对象的实例化延迟到子类中。 | 建造者模式将一个复杂对象的构建过程与其表现分离，使得同样的构建过程可以创建不同的表示。
-主要思想 | 通过工厂类来创建对象，具体的对象创建逻辑由子类实现。 | 将对象的构建过程分解为多个步骤，并提供一个统一的接口供客户端按顺序调用这些步骤，最终构建出完整的对象。
-使用场景 | 当需要根据不同的条件创建具有共同接口的对象时，可以使用工厂方法模式。 | 当构建复杂对象的过程非常复杂且需要灵活地配置各部分时，可以使用建造者模式。
-类关系 | 工厂方法模式中，通常需要创建一个抽象工厂类和多个具体工厂类，每个具体工厂类负责创建不同的对象。 | 建造者模式中，通常需要创建一个抽象建造者类和一个或多个具体建造者类，每个具体建造者类负责构建对象的某个部分，最后一个指导者类负责按照顺序调用具体建造者类构建对象的步骤，最终得到完整的对象。
-灵活性 | 工厂方法模式在增加新的产品类时，只需创建一个新的具体工厂类，符合开闭原则。遵循单一职责原则 | 建造者模式在增加新的产品类时，需要创建一个新的具体建造者类，并修改指导者类的构建算法，可能影响已有代码的稳定性，不符合开闭原则。遵循单一职责原则
-返回类型一致性 | 工厂方法模式返回的对象类型通常是相同的接口或基类类型，便于扩展和替换。 | 建造者模式返回的对象类型通常是具体的产品类，对于客户端来说，需要知道具体的产品类。
-使用难度 | 工厂方法模式比较简单，容易理解和使用。 | 建造者模式相对复杂，需要了解多个类之间的关系和构建流程，使用起来较为复杂。
-<p><br></p><p><strong>当对象的创建过程相对简单，只需通过一个接口创建对象，并且可能有多个具体实现时，可以考虑使用工厂方法模式。这样，每个具体工厂负责实例化一种具体产品。</strong></p><p><strong><span>当对象的创建过程复杂，需要一步一步地构建，并且构建过程中有多个可选步骤，可以使用建造者模式。建造者模式将构建过程解耦，使得客户端可以根据需求自由组合构建步骤，而不必关心构建细节。</span></strong></p><p><strong><span>选择使用工厂方法模式还是建造者模式取决于具体的需求和对象的构建复杂性。我的理解是这样的，如果只有一个接口，而且对象的创建相对简单，那么工厂方法模式可能更合适。如果对象的创建过程较为复杂，有多个可选的构建步骤，那么建造者模式更适合。</span></strong></p><p><strong>在实际项目中，选择使用工厂方法模式还是建造者模式取决于具体的需求和设计考虑灵活运用。</strong></p><p><br></p>
-
-</div>
+<div class="markdown-body" id="postBody"><p><a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/e8d6d420-58e6-4308-86af-e87a98e1d9d7"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/e8d6d420-58e6-4308-86af-e87a98e1d9d7" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/9415678c-f535-47b9-8e21-becfd831b316"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/9415678c-f535-47b9-8e21-becfd831b316" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/b7f89c9f-e753-4cce-bfcc-cfb9b4581775"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/b7f89c9f-e753-4cce-bfcc-cfb9b4581775" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/fb266280-9879-42f0-9b89-75709e7a220a"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/fb266280-9879-42f0-9b89-75709e7a220a" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/94f61e59-3ab4-4b0b-86c8-fd203770148b"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/94f61e59-3ab4-4b0b-86c8-fd203770148b" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/48f20736-4e24-4e1a-aec3-271d6c3ce7b6"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/48f20736-4e24-4e1a-aec3-271d6c3ce7b6" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/a0da50c0-d1c5-4d5e-a349-4bd8a0fbb457"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/a0da50c0-d1c5-4d5e-a349-4bd8a0fbb457" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/56034147-06f1-4451-a7e6-83e6f4a59956"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/56034147-06f1-4451-a7e6-83e6f4a59956" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/0f748bb2-5f7c-434a-ad1e-89069e5430c9"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/0f748bb2-5f7c-434a-ad1e-89069e5430c9" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/25525b0f-439c-421f-bd71-98fb8e3347f4"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/25525b0f-439c-421f-bd71-98fb8e3347f4" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/abb3975a-9563-444a-9428-6a56aacb4bf8"><img src="https://github.com/tuqigo/tuqigo.github.io/assets/130914325/abb3975a-9563-444a-9428-6a56aacb4bf8" alt="image" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>

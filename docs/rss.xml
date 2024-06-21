@@ -1,10 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Tuqi Blog</title><link>https://tuqigo.github.io</link><description>Try Everything</description><copyright>Tuqi Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://tuqigo.github.io</link></image><lastBuildDate>Fri, 21 Jun 2024 01:48:17 +0000</lastBuildDate><managingEditor>Tuqi Blog</managingEditor><ttl>60</ttl><webMaster>Tuqi Blog</webMaster><item><title>工厂方法模式 VS 建造者模式</title><link>https://tuqigo.github.io/post/gong-chang-fang-fa-mo-shi-%20VS%20-jian-zao-zhe-mo-shi.html</link><description>&lt;html&gt;&#13;
-&lt;body&gt;&#13;
-&lt;!--StartFragment--&gt;&lt;h2&gt;设计思想对比&lt;/h2&gt;&#13;
-设计模式 | 工厂方法模式 | 建造者模式&#13;
--- | -- | --&#13;
-定义 | 工厂方法模式通过定义一个用于创建对象的接口，并由子类决定实例化哪个类，将对象的实例化延迟到子类中。</description><guid isPermaLink="true">https://tuqigo.github.io/post/gong-chang-fang-fa-mo-shi-%20VS%20-jian-zao-zhe-mo-shi.html</guid><pubDate>Fri, 21 Jun 2024 01:47:47 +0000</pubDate></item><item><title>Hello</title><link>https://tuqigo.github.io/post/Hello.html</link><description>&lt;br /&gt;&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Tuqi Blog</title><link>https://tuqigo.github.io</link><description>Try Everything</description><copyright>Tuqi Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://tuqigo.github.io</link></image><lastBuildDate>Fri, 21 Jun 2024 01:52:10 +0000</lastBuildDate><managingEditor>Tuqi Blog</managingEditor><ttl>60</ttl><webMaster>Tuqi Blog</webMaster><item><title>工厂方法模式 VS 建造者模式</title><link>https://tuqigo.github.io/post/gong-chang-fang-fa-mo-shi-%20VS%20-jian-zao-zhe-mo-shi.html</link><description>![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/e8d6d420-58e6-4308-86af-e87a98e1d9d7)&#13;
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/9415678c-f535-47b9-8e21-becfd831b316)&#13;
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/b7f89c9f-e753-4cce-bfcc-cfb9b4581775)&#13;
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/fb266280-9879-42f0-9b89-75709e7a220a)&#13;
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/94f61e59-3ab4-4b0b-86c8-fd203770148b)&#13;
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/48f20736-4e24-4e1a-aec3-271d6c3ce7b6)&#13;
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/a0da50c0-d1c5-4d5e-a349-4bd8a0fbb457)&#13;
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/56034147-06f1-4451-a7e6-83e6f4a59956)&#13;
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/0f748bb2-5f7c-434a-ad1e-89069e5430c9)&#13;
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/25525b0f-439c-421f-bd71-98fb8e3347f4)&#13;
+![image](https://github.com/tuqigo/tuqigo.github.io/assets/130914325/abb3975a-9563-444a-9428-6a56aacb4bf8)&#13;
+。</description><guid isPermaLink="true">https://tuqigo.github.io/post/gong-chang-fang-fa-mo-shi-%20VS%20-jian-zao-zhe-mo-shi.html</guid><pubDate>Fri, 21 Jun 2024 01:47:47 +0000</pubDate></item><item><title>Hello</title><link>https://tuqigo.github.io/post/Hello.html</link><description>&lt;br /&gt;&#13;
 &#13;
 &lt;p align='center'&gt;&#13;
   &lt;h3 align='center'&gt;潘多拉 Pandora&lt;/h3&gt;&#13;
