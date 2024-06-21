@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Tuqi Blog</title><link>https://tuqigo.github.io</link><description>Try Everything</description><copyright>Tuqi Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://tuqigo.github.io</link></image><lastBuildDate>Fri, 21 Jun 2024 01:31:07 +0000</lastBuildDate><managingEditor>Tuqi Blog</managingEditor><ttl>60</ttl><webMaster>Tuqi Blog</webMaster><item><title>Hello</title><link>https://tuqigo.github.io/post/Hello.html</link><description>&lt;br /&gt;&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Tuqi Blog</title><link>https://tuqigo.github.io</link><description>Try Everything</description><copyright>Tuqi Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://tuqigo.github.io</link></image><lastBuildDate>Fri, 21 Jun 2024 01:48:17 +0000</lastBuildDate><managingEditor>Tuqi Blog</managingEditor><ttl>60</ttl><webMaster>Tuqi Blog</webMaster><item><title>工厂方法模式 VS 建造者模式</title><link>https://tuqigo.github.io/post/gong-chang-fang-fa-mo-shi-%20VS%20-jian-zao-zhe-mo-shi.html</link><description>&lt;html&gt;&#13;
+&lt;body&gt;&#13;
+&lt;!--StartFragment--&gt;&lt;h2&gt;设计思想对比&lt;/h2&gt;&#13;
+设计模式 | 工厂方法模式 | 建造者模式&#13;
+-- | -- | --&#13;
+定义 | 工厂方法模式通过定义一个用于创建对象的接口，并由子类决定实例化哪个类，将对象的实例化延迟到子类中。</description><guid isPermaLink="true">https://tuqigo.github.io/post/gong-chang-fang-fa-mo-shi-%20VS%20-jian-zao-zhe-mo-shi.html</guid><pubDate>Fri, 21 Jun 2024 01:47:47 +0000</pubDate></item><item><title>Hello</title><link>https://tuqigo.github.io/post/Hello.html</link><description>&lt;br /&gt;&#13;
 &#13;
 &lt;p align='center'&gt;&#13;
   &lt;h3 align='center'&gt;潘多拉 Pandora&lt;/h3&gt;&#13;
