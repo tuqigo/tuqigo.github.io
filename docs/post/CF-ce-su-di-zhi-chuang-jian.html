@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
@@ -124,8 +124,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>不需要创建任何类型的实例，直接写出，例如0823.ppp.com，你只需要保证 ppp.com在你的CF上托管即可，证书会<a href="https://so.csdn.net/so/search?q=%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE&amp;spm=1001.2101.3001.7020" rel="nofollow">自动配置</a></p>
 <p>保存之后就可以通过<a href="https://0823.ppp.com/test%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%EF%BC%8C%E5%85%B6%E4%B8%AD/test%E4%BD%A0%E5%8F%AF%E4%BB%A5%E5%9C%A8%E8%84%9A%E6%9C%AC%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%EF%BC%8C%E8%BF%99%E5%8F%AA%E6%98%AF%E4%B8%80%E4%B8%AA%5B%E9%87%8D%E5%AE%9A%E5%90%91%5D(https://so.csdn.net/so/search?q=%E9%87%8D%E5%AE%9A%E5%90%91&amp;spm=1001.2101.3001.7020)%E5%88%B0https://cachefly.cachefly.net/200mb.test%E7%9A%84%E7%9B%91%E5%90%AC%E8%84%9A%E6%9C%AC%EF%BC%8C%E4%BD%A0%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%94%A850mb" rel="nofollow">https://0823.ppp.com/test下载文件，其中/test你可以在脚本中自定义，这只是一个[重定向](https://so.csdn.net/so/search?q=重定向&amp;spm=1001.2101.3001.7020)到https://cachefly.cachefly.net/200mb.test的监听脚本，你也可以用50mb</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
+
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
+
 </div>
     <div id="footer">Copyright © <span id="year"></span><a href="https://tuqigo.github.io"> Tuqi Blog </a>
 <p>
@@ -180,6 +182,8 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
 
 function openComments(){
     cm=document.getElementById("comments");
